@@ -178,19 +178,177 @@ function countVowelsInString(str) {
 }
 
 console.log(countVowelsInString("abcdifuO"));
-*/
 
 // #11 Longest Word in a String
 function longestWordInString(str) {
   let stringArray = str.split(" ");
   var longestStr = stringArray[0].length;
-  console.log(stringArray[0].length);
-  console.log(stringArray.length);
-  var str = longestStr;
-  for (var i = 0; i < stringArray.length - 1; i++) {
-    if (stringArray[i].length >= longestStr) longestStr = stringArray[i].length;
+  var index = 0;
+  for (var i = 0; i < stringArray.length; i++) {
+    if (stringArray[i].length >= longestStr) {
+      longestStr = stringArray[i].length;
+      index = i;
+    }
   }
-  return stringArray[longestStr];
+  return {
+    character: longestStr,
+    str: stringArray[index],
+  };
 }
 
-console.log(longestWordInString("I am Arsalan"));
+console.log(longestWordInString("I am Arsalan javascript developer"));
+
+// #12 Remove Duplicates from an Array
+function removeDuplicatesFromArray(arr = []) {
+  let newArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!newArr.includes(arr[i])) {
+      newArr.push(arr[i]);
+    } else {
+      continue;
+  }
+}
+return newArr;
+}
+
+console.log(removeDuplicatesFromArray([1, 2, 3, 4, 5, 4, 3, 6, 7]));
+
+// #13 Count Occurrences of Each Character
+function countOccurrencesCharacter(str) {
+  let strLowerCase = str.toLowerCase();
+  let counter = {};
+  for (let i = 0; i < strLowerCase.length; i++) {
+    counter[strLowerCase[i]] = (counter[strLowerCase[i]] || 0) + 1;
+  }
+  return counter;
+}
+
+console.log(countOccurrencesCharacter("ABCDEedcba"));
+
+// #14 Intersection of Two Arrays
+function intersectionTwoArrays(arr1 = [], arr2 = []) {
+  let intersectionOfArrays = [];
+  
+  if (arr1.length == 0 || arr2.length == 0) {
+    return intersectionOfArrays;
+  }
+  
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr2.length; j++) {
+      if (arr1[i] == arr2[j]) {
+        if (!intersectionOfArrays.includes(arr1[i]))
+        intersectionOfArrays.push(arr1[i]);
+      }
+    }
+  }
+  
+  return intersectionOfArrays;
+}
+
+console.log(intersectionTwoArrays([1, 2, 3, 4, 5, 2], [2, 4, 6, 8]));
+console.log(intersectionTwoArrays([1, 2, 3], [2, 4, 6, 8]));
+
+// #15 Missing Number in a Sequence/Array
+function missingNumberInSequence(arr = [], length) {
+  // first method
+  let missNum = (length * (length + 1)) / 2;
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  // second method
+  let maxNum = Math.max(...arr);
+  let miss_Num = 0;
+
+  for (let i = 1; i <= maxNum; i++) {
+    if (!arr.includes(i)) miss_Num = i;
+  }
+
+  return {
+    fstMis: (missNum = missNum - sum),
+    miss_Num,
+  };
+}
+
+console.log(missingNumberInSequence([1, 2, 3, 5, 6, 7, 8], 8));
+
+// #16 First Non-Repeating Character
+function firstNonRepeatingCharacter(str) {
+  let strLowerCase = str.toLowerCase();
+  let counter = {};
+  for (let i = 0; i < strLowerCase.length; i++) {
+    counter[strLowerCase[i]] = (counter[strLowerCase[i]] || 0) + 1;
+  }
+  console.log(counter);
+  for (let i = 0; i < strLowerCase.length; i++) {
+    if (counter[strLowerCase[i]] == 1) {
+      return strLowerCase[i];
+    }
+  }
+  return "No Non-Repeating Character";
+}
+
+console.log(firstNonRepeatingCharacter("aabbcdcedeAF"));
+console.log(firstNonRepeatingCharacter("AabBccccdcedeDEF"));
+
+// #17 Anagram Checker
+function anagramChecker(str1, str2) {
+  let counter = {};
+  let str1LowerCase = str1.split(" ").join("").toLowerCase();
+  let str2LowerCase = str2.split(" ").join("").toLowerCase();
+  
+  if (str1LowerCase.length != str2LowerCase.length) {
+    return "Its complsury that length is same for Anagram.";
+  }
+  
+  // counter Increment
+  for (let i = 0; i < str1LowerCase.length; i++) {
+    counter[str1LowerCase[i]] = (counter[str1LowerCase[i]] || 0) + 1;
+  }
+  // counter Decrement
+  for (let i = 0; i < str2LowerCase.length; i++) {
+    counter[str2LowerCase[i]] = (counter[str2LowerCase[i]] || 0) - 1;
+  }
+  // counter Checking
+  for (let i = 0; i < str2LowerCase.length; i++) {
+    if (counter[str2LowerCase[i]] != 0) return false;
+  }
+  return true;
+}
+
+console.log(anagramChecker("listen", "S ilent"));
+console.log(anagramChecker("Apple", "aplep"));
+*/
+
+// #18 Second Largest Number in an Array
+function SecondLargestNumberInArray(arr = []) {
+  if (arr.length < 2) {
+    return "Not enough elements";
+  }
+  let sortedArray = [];
+  let largestNum = Math.max(...arr);
+  let secondLargestNum = -Infinity;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!sortedArray.includes(arr[i])) {
+      sortedArray.push(arr[i]);
+    }
+  }
+
+  for (let j = 0; j < sortedArray.length; j++) {
+    if (sortedArray[j] > secondLargestNum && secondLargestNum < largestNum) {
+      if (secondLargestNum == largestNum) {
+        continue;
+      }
+      secondLargestNum = sortedArray[j];
+    }
+  }
+  if (secondLargestNum) {
+    return secondLargestNum;
+  } else {
+    return "Not enough unique elements";
+  }
+}
+
+console.log(SecondLargestNumberInArray([1, 2, 3, 4, 4, 2, 5, 5, 6]));
