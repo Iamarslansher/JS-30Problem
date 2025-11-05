@@ -319,36 +319,110 @@ function anagramChecker(str1, str2) {
 
 console.log(anagramChecker("listen", "S ilent"));
 console.log(anagramChecker("Apple", "aplep"));
-*/
 
 // #18 Second Largest Number in an Array
 function SecondLargestNumberInArray(arr = []) {
   if (arr.length < 2) {
     return "Not enough elements";
   }
-  let sortedArray = [];
-  let largestNum = Math.max(...arr);
-  let secondLargestNum = -Infinity;
+  
 
-  for (let i = 0; i < arr.length; i++) {
-    if (!sortedArray.includes(arr[i])) {
-      sortedArray.push(arr[i]);
-    }
-  }
+  let uniqueArr = [...new Set(arr)];
 
-  for (let j = 0; j < sortedArray.length; j++) {
-    if (sortedArray[j] > secondLargestNum && secondLargestNum < largestNum) {
-      if (secondLargestNum == largestNum) {
-        continue;
-      }
-      secondLargestNum = sortedArray[j];
-    }
-  }
-  if (secondLargestNum) {
-    return secondLargestNum;
-  } else {
+  if (uniqueArr.length < 2) {
     return "Not enough unique elements";
   }
+  
+  let largestNum = Math.max(...uniqueArr);
+  let secondLargestNum = -Infinity;
+  
+  for (let i = 0; i < uniqueArr.length; i++) {
+    if (uniqueArr[i] !== largestNum && uniqueArr[i] > secondLargestNum) {
+      secondLargestNum = uniqueArr[i];
+    }
+  }
+  
+  return secondLargestNum;
 }
 
 console.log(SecondLargestNumberInArray([1, 2, 3, 4, 4, 2, 5, 5, 6]));
+console.log(SecondLargestNumberInArray([7, 7, 7]));
+console.log(SecondLargestNumberInArray([10]));
+// #19 Flatten a Nested Array
+function arraySorting(arr = []) {
+  let newArr = [];
+  for (var i = 0; i < arr.length; ++i) {
+    if (Array.isArray(arr[i])) {
+      newArr = newArr.concat(arraySorting(arr[i]));
+    } else {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+console.log(arraySorting([1, 2, [3, 4, [5]]]));
+
+// #20 Find Pairs with a Given Sum
+function arrSum(arr = []) {
+  let arr2 = [];
+  for (let i = 0; i < arr.length / 2; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] == 10) {
+        arr2.push([arr[i], arr[j]]);
+      }
+    }
+  }
+  return arr2;
+}
+console.log(arrSum([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+// #21 Merge Two Sorted Arrays
+function mergeTwoSortedArrays(arr1 = [], arr2 = []) {
+  let mergedArray = [];
+  for (let i = 0; i < arr1.length; i++) {
+    mergedArray.push(arr1[i]);
+  }
+  for (let j = 0; j < arr2.length; j++) {
+    mergedArray.push(arr2[j]);
+  }
+
+  for (let k = 0; k < mergedArray.length; k++) {
+    for (let l = 0; l < mergedArray.length; l++) {
+      if (mergedArray[k] < mergedArray[l]) {
+        let temp = mergedArray[k];
+        mergedArray[k] = mergedArray[l];
+        mergedArray[l] = temp;
+      }
+    }
+  }
+  return mergedArray;
+}
+
+console.log(mergeTwoSortedArrays([1, 3, 5], [2, 4, 6]));
+
+// #22 Merge Three Sorted Arrays
+function mergeThreeSortedArrays(arr1 = [], arr2 = [], arr3 = []) {
+  let mergedArray = [...arr1, ...arr2, ...arr3];
+  return mergedArray.sort((a, b) => a - b);
+}
+
+console.log(mergeThreeSortedArrays([1, 3, 5], [2, 4, 6], [0, 7, 8]));
+
+*/
+// #23 Find Majority Element in Array
+
+function majorityElementInArray(arr = []) {
+  let countMap = {};
+  for (let i = 0; i < arr.length; i++) {
+    countMap[arr[i]] = (countMap[arr[i]] || 0) + 1;
+  }
+
+  let n = arr.length;
+  for (let key in countMap) {
+    if (countMap[key] > n / 2) return key;
+  }
+
+  return "No Majority Element";
+}
+
+console.log(majorityElementInArray([1, 2, 3, 3, 3]));
+console.log(majorityElementInArray([1, 2, 3, 4]));
