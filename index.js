@@ -407,7 +407,6 @@ function mergeThreeSortedArrays(arr1 = [], arr2 = [], arr3 = []) {
 
 console.log(mergeThreeSortedArrays([1, 3, 5], [2, 4, 6], [0, 7, 8]));
 
-*/
 // #23 Find Majority Element in Array
 
 function majorityElementInArray(arr = []) {
@@ -426,3 +425,85 @@ function majorityElementInArray(arr = []) {
 
 console.log(majorityElementInArray([1, 2, 3, 3, 3]));
 console.log(majorityElementInArray([1, 2, 3, 4]));
+
+// #24 Find Missing Letters in a String
+
+function missingLettersInString(str) {
+  // First method
+  let alphabet = {
+    a: "",
+    b: "",
+    c: "",
+    d: "",
+    e: "",
+    f: "",
+    g: "",
+    h: "",
+    i: "",
+    j: "",
+    k: "",
+    l: "",
+    m: "",
+    n: "",
+    o: "",
+    p: "",
+    q: "",
+    r: "",
+    s: "",
+    t: "",
+    u: "",
+    v: "",
+    w: "",
+    x: "",
+    y: "",
+    z: "",
+  };
+  for (let i = 0; i < str.length; i++) {
+    for (const key in alphabet) {
+      if (!alphabet[str[i]]) {
+        delete alphabet[str[i]];
+      }
+    }
+  }
+  return (Object.keys(alphabet).join(""));
+  // Second Method
+  let alphabet = "abcdefghijklmnopqrstuvwxyz";
+  let cleanStr = str.toLowerCase().replace(/[^a-z]/g, "");
+  let missingLetter = [];
+  for (let i = 0; i < alphabet.length; i++) {
+    if (!cleanStr.includes(alphabet[i])) {
+      missingLetter.push(alphabet[i]);
+    }
+  }
+  return missingLetter.length == 0
+  ? "All Alphabets are Present."
+  : missingLetter.join("");
+}
+
+missingLettersInString("The quick over the lazy dog");
+missingLettersInString("The quick brown fox jumps");
+
+// #25 sum of diagnol array
+
+function diagonalSum(arr = []) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (i == j) {
+        sum += arr[i][j];
+      }
+    }
+  }
+  return sum;
+}
+
+console.log(
+  diagonalSum([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ])
+);
+*/
+
+// #26 — Rotate a Matrix 90 Degrees (Clockwise)
