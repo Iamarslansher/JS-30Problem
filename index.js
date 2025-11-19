@@ -280,7 +280,6 @@ function firstNonRepeatingCharacter(str) {
   for (let i = 0; i < strLowerCase.length; i++) {
     counter[strLowerCase[i]] = (counter[strLowerCase[i]] || 0) + 1;
   }
-  console.log(counter);
   for (let i = 0; i < strLowerCase.length; i++) {
     if (counter[strLowerCase[i]] == 1) {
       return strLowerCase[i];
@@ -348,6 +347,7 @@ function SecondLargestNumberInArray(arr = []) {
 console.log(SecondLargestNumberInArray([1, 2, 3, 4, 4, 2, 5, 5, 6]));
 console.log(SecondLargestNumberInArray([7, 7, 7]));
 console.log(SecondLargestNumberInArray([10]));
+
 // #19 Flatten a Nested Array
 function arraySorting(arr = []) {
   let newArr = [];
@@ -504,6 +504,126 @@ console.log(
     [7, 8, 9],
   ])
 );
-*/
 
 // #26 — Rotate a Matrix 90 Degrees (Clockwise)
+
+function rotateMatrix(arr = []) {
+  let rotateMatrix = [];
+  for (let i = arr.length - 1; i >= 0; i--) {
+    let newRow = [];
+    for (let j = 0; j < arr[i].length; j++) {
+      newRow.push(arr[i][j]);
+    }
+    rotateMatrix.push(newRow);
+  }
+
+  return rotateMatrix;
+}
+
+console.log(
+  rotateMatrix([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+  ])
+);
+
+// #27 — Longest Consecutive Sequence
+function longestConsecutiveSequence(arr = []) {
+  if (arr.length === 0) return 0;
+
+  let numSet = new Set(arr);
+  let maxLen = 0;
+
+  for (let num of numSet) {
+    // check if it's the start of a sequence
+    if (!numSet.has(num - 1)) {
+      let currentNum = num;
+      let currentLen = 1;
+
+      // count forward
+      while (numSet.has(currentNum + 1)) {
+        currentNum++;
+        currentLen++;
+      }
+
+      maxLen = Math.max(maxLen, currentLen);
+    }
+  }
+
+  return maxLen;
+}
+
+console.log(longestConsecutiveSequence([100, 4, 200, 1, 3, 2]));
+console.log(longestConsecutiveSequence([9, 1, 3, 10, 2, 20, 4, 5]));
+
+// #28 Find Common Elements in Multiple Arrays
+function commonElementsInMultipleArrays(arr1 = [], arr2 = [], arr3 = []) {
+  // first Method
+  if (arr1.length === 0 || arr2.length == 0 || arr3.length == 0) return [];
+  let common = [];
+  for (let i = 0; i < arr1.length; i++) {
+    for (let j = 0; j < arr2.length; j++) {
+      for (let k = 0; k < arr3.length; k++) {
+        if (arr1[i] == arr2[j] && arr1[i] == arr3[k]) {
+          if (common.includes(arr1[i])) {
+            continue;
+          }
+          common.push(arr1[i]);
+        }
+      }
+    }
+  }
+  return common;
+  
+  // second Method
+  if (arr1.length === 0 || arr2.length == 0 || arr3.length == 0) return [];
+  let allArrays = [...arr1, ...arr2, ...arr3];
+  let countMap = {};
+  let common = [];
+  console.log(allArrays);
+  for (let i = 0; i < allArrays.length; i++) {
+    countMap[allArrays[i]] = (countMap[allArrays[i]] || 0) + 1;
+  }
+  
+  for (let key in countMap) {
+    if (countMap[key] > 3) common.push(key);
+  }
+  return common;
+}
+console.log(
+  commonElementsInMultipleArrays(
+    [1, 2, 3, 4, 5, 2],
+    [5, 6, 2, 7, 8, 2],
+    [0, 2, 11, 5, 12, 2]
+  )
+);
+// #29 — Rotate an Array by K Positions
+
+function rotateArrayByKPositions(arr = [], k) {
+  k = k % arr.length;
+  return arr.slice(-k).concat(arr.slice(0, arr.length - k));
+}
+
+console.log(rotateArrayByKPositions([1, 2, 3, 4, 5, 6, 7], 3));
+console.log(rotateArrayByKPositions([1, 2, 3, 4], 1));
+
+// #30 — Move Zeroes to End
+
+function moveZeroes(arr = []) {
+  let numbArr = [];
+  let zeroArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] == 0) {
+      zeroArr.push(arr[i]);
+    } else {
+      numbArr.push(arr[i]);
+    }
+  }
+  
+  return numbArr.concat(...zeroArr);
+}
+
+console.log(moveZeroes([0, 1, 0, 3, 12]));
+console.log(moveZeroes([1, 2, 3, 0, 0, 4]));
+*/

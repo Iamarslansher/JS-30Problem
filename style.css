@@ -1,0 +1,384 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --bg-primary: #0a0e27;
+  --bg-secondary: #0f1535;
+  --accent-primary: #7c5cff;
+  --accent-secondary: #06b6d4;
+  --accent-tertiary: #ec4899;
+  --text-primary: #f0f4f8;
+  --text-secondary: #a0afc0;
+  --text-muted: #6b7684;
+  --border-color: rgba(255, 255, 255, 0.05);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at 20% 50%,
+      rgba(124, 92, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(6, 182, 212, 0.1) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInDown 0.8s ease-out;
+}
+.header-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(124, 92, 255, 0.3);
+}
+.header h1 {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(270deg, #7c5cff, #06b6d4, #ec4899, #7c5cff);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease infinite;
+  letter-spacing: -1px;
+}
+.header p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Main Container */
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 30px;
+  margin-bottom: 40px;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+/* Facts Section */
+.facts-section {
+  background: rgba(15, 21, 53, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+.facts-section:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 92, 255, 0.2);
+  box-shadow: var(--shadow-lg);
+}
+.facts-section h2 {
+  font-size: 20px;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.facts-section h2::before {
+  content: "✨";
+  font-size: 24px;
+}
+.facts-section ul {
+  list-style: none;
+}
+.facts-section li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+.facts-section li:last-child {
+  border-bottom: none;
+}
+.facts-section li:hover {
+  color: var(--text-primary);
+  padding-left: 8px;
+}
+.facts-section li strong {
+  color: var(--accent-secondary);
+  font-weight: 600;
+}
+.facts-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Challenge Card */
+.challenge-card {
+  background: rgba(21, 29, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 28px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
+}
+.challenge-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  border-color: rgba(124, 92, 255, 0.3);
+}
+.challenge-card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-secondary);
+  margin-bottom: 20px;
+}
+.challenge-content {
+  flex: 1;
+  margin-bottom: 24px;
+}
+.challenge-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  line-height: 1.5;
+  animation: fadeIn 0.6s ease-out;
+}
+.challenge-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.example-block {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: 8px;
+  padding: 14px;
+  font-family: "Monaco", "Courier New", monospace;
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.5s forwards;
+}
+.example-block:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.example-block:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.example-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-secondary);
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+/* Buttons */
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+button {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+button.primary {
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  color: var(--bg-primary);
+  box-shadow: 0 6px 20px rgba(124, 92, 255, 0.4);
+}
+button.primary:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 40px rgba(124, 92, 255, 0.6);
+}
+button.secondary {
+  background: transparent;
+  color: var(--accent-secondary);
+  border: 1.5px solid var(--accent-secondary);
+}
+button.secondary:hover {
+  background: rgba(6, 182, 212, 0.15);
+  transform: translateY(-2px);
+}
+button:active {
+  transform: scale(0.98);
+}
+button.copy-full {
+  grid-column: 1 / -1;
+}
+.helper-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.06),
+    rgba(6, 182, 212, 0.03)
+  );
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+.footer-text {
+  color: var(--text-secondary);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.heart {
+  color: var(--accent-tertiary);
+  font-size: 18px;
+  animation: heartbeat 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+.dev-name {
+  color: var(--accent-primary);
+  font-weight: 700;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.dev-name::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.dev-name:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
