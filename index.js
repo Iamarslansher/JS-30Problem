@@ -626,4 +626,25 @@ function moveZeroes(arr = []) {
 
 console.log(moveZeroes([0, 1, 0, 3, 12]));
 console.log(moveZeroes([1, 2, 3, 0, 0, 4]));
+// #31 — Product of Array Except Self
+
+function productOfArrayExceptSelf(arr = []) {
+  let newArr = [];
+  let total = arr.reduce((acc, val) => {
+    return acc * val;
+  }, 1);
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push(total / arr[i]);
+  }
+  return newArr;
+}
+productOfArrayExceptSelf([1, 2, 3, 4]);
+
+// #32 — Absolute Value
+
+function absoluteValue(val) {
+  return Math.sqrt(val * val);
+}
+
+absoluteValue(-7);
 */
